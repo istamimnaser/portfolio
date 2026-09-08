@@ -23,19 +23,20 @@
   --shadow-lg: 0 1px 0 var(--line), 0 26px 54px -18px rgba(0, 0, 0, 0.65);
 }
 
-/* per-section accent overrides — brightened for contrast on dark */
-#education    { --accent: #5B8CFF; }
-#experience   { --accent: #9C7BFF; }
-#stack        { --accent: #22D6B5; }
-#software     { --accent: #2CC0FF; }
-#hardware     { --accent: #FF9B45; }
-#racing       { --accent: #B5502E; }
-#achievements { --accent: #F5B400; }
-#media        { --accent: #D667FF; }
-#events       { --accent: #3AD076; }
-#hobbies      { --accent: #FF63AC; }
-#github       { --accent: #7B80FF; }
-#connect      { --accent: #B5502E; }
+/* Every section now shares one brand color — a single orange accent
+   on the dark/white base, rather than a different hue per section. */
+#education,
+#experience,
+#stack,
+#software,
+#hardware,
+#racing,
+#achievements,
+#media,
+#events,
+#hobbies,
+#github,
+#connect { --accent: #B5502E; }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 96px; }
@@ -84,9 +85,9 @@ svg[class*="icon"], .icon-badge svg { stroke-width: 2.2; }
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 60% 45% at 50% 0%, rgba(255, 68, 56, 0.10), transparent 70%),
-    radial-gradient(ellipse 55% 40% at 100% 30%, rgba(91, 140, 255, 0.06), transparent 70%),
-    radial-gradient(ellipse 55% 45% at 0% 80%, rgba(124, 128, 255, 0.05), transparent 70%);
+    radial-gradient(ellipse 60% 45% at 50% 0%, rgba(181, 80, 46, 0.10), transparent 70%),
+    radial-gradient(ellipse 55% 40% at 100% 30%, rgba(181, 80, 46, 0.06), transparent 70%),
+    radial-gradient(ellipse 55% 45% at 0% 80%, rgba(181, 80, 46, 0.05), transparent 70%);
 }
 
 nav, header, main, footer { position: relative; z-index: 1; }
@@ -430,15 +431,15 @@ main { counter-reset: stage; }
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #34D399;
-  box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.6);
+  background: var(--accent);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent);
   animation: pulse 2s infinite;
   flex-shrink: 0;
 }
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5); }
-  70% { box-shadow: 0 0 0 8px rgba(52, 211, 153, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 50%, transparent); }
+  70% { box-shadow: 0 0 0 8px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
 }
 
 .headline {
@@ -631,7 +632,7 @@ main { counter-reset: stage; }
   padding: 4px 10px;
   border-radius: 6px;
 }
-.dc-status { display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: #34D399; }
+.dc-status { display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: var(--accent); }
 .dc-name {
   font-family: var(--font-head);
   font-size: 21px;
@@ -740,7 +741,7 @@ main { counter-reset: stage; }
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--org-color, var(--accent));
+  background: var(--org-color, #F4F1EA);
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-sm);
@@ -978,7 +979,7 @@ main { counter-reset: stage; }
   top: -80px; left: 50%;
   transform: translateX(-50%);
   width: 600px; height: 300px;
-  background: radial-gradient(ellipse, rgba(255, 68, 56, 0.14), transparent 70%);
+  background: radial-gradient(ellipse, rgba(181, 80, 46, 0.14), transparent 70%);
   pointer-events: none;
   z-index: -1;
 }
@@ -1069,7 +1070,7 @@ main { counter-reset: stage; }
   font-family: var(--font-mono);
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-.toast svg { width: 15px; height: 15px; color: #34D399; }
+.toast svg { width: 15px; height: 15px; color: var(--accent); }
 
 /* ===================== Reveal on scroll ===================== */
 .reveal {
