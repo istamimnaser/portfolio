@@ -193,7 +193,14 @@ main { counter-reset: stage; }
   color: var(--accent);
   pointer-events: none;
   z-index: 0;
+  opacity: 0;
+  transform: scale(0.7) rotate(-8deg);
+  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.section.in-view .pen-icon,
+.contact.in-view .pen-icon {
   opacity: 0.9;
+  transform: scale(1) rotate(0deg);
 }
 .pen-icon svg {
   width: 100%;
@@ -1104,6 +1111,24 @@ main { counter-reset: stage; }
 .hobby-grid > .reveal:nth-child(5),
 .exp-grid > .reveal:nth-child(5) { transition-delay: 0.32s; }
 
+/* Icon pop-in — the small icon glyph inside each card (hobby icon-badges,
+   org logos, trophy markers) scales/fades in just after its card reveals,
+   the same way the big section pen-icons draw in. */
+.icon-badge svg,
+.org-badge img,
+.trophy-pos svg {
+  opacity: 0;
+  transform: scale(0.4) rotate(-14deg);
+  transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition-delay: 0.2s;
+}
+.reveal.in .icon-badge svg,
+.reveal.in .org-badge img,
+.reveal.in .trophy-pos svg {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
 /* ===================== Responsive ===================== */
 /* Laptop+ — wider, edge-respecting layout: generous symmetric side margins,
    more breathing room between the text column and the photo card. */
@@ -1191,5 +1216,7 @@ main { counter-reset: stage; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { transition: none; opacity: 1; transform: none; }
+  .pen-icon { opacity: 0.9 !important; transform: none !important; transition: none; }
   .pen-icon svg { animation: none !important; }
+  .icon-badge svg, .org-badge img, .trophy-pos svg { transition: none; opacity: 1; transform: none; }
 }
