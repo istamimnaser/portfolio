@@ -1153,7 +1153,7 @@ main { counter-reset: stage; }
 @media (max-width: 920px) {
   .hero-inner { grid-template-columns: 1fr; min-height: auto; }
   .hero-photo { max-width: 380px; margin-left: auto; margin-right: auto; }
-  .hero-bg { background-position: 30% 55%; }
+  .hero-bg { background-image: none; }
   .proj-grid, .proj-grid-2, .exp-grid { grid-template-columns: 1fr; }
   .skill-cols { grid-template-columns: 1fr; gap: 26px; }
   .hobby-grid { grid-template-columns: 1fr 1fr; }
@@ -1161,6 +1161,9 @@ main { counter-reset: stage; }
   .contact-wrapper { grid-template-columns: 1fr; }
   .contact-cards { grid-template-columns: 1fr 1fr; }
   .section-head::after { width: 42px; height: 42px; font-size: 13px; }
+  /* The contact section's big top padding exists only to clear the
+     desktop pen-icon doodle (hidden below 1080px) — collapse it here. */
+  .contact { padding: 56px 24px 80px; margin-top: 0; }
 }
 
 @media (max-width: 880px) {
@@ -1209,7 +1212,9 @@ main { counter-reset: stage; }
   .trophy-tag { grid-column: 2; justify-self: start; margin-top: 4px; }
   .hobby-grid { grid-template-columns: 1fr; }
   .contact-cards { grid-template-columns: 1fr; }
-  .section { padding: 64px 20px; }
+  .section { padding: 44px 20px; }
+  .section-head { margin-bottom: 30px; }
+  .section-head::before { margin-bottom: 10px; }
   .section-head::after { display: none; }
 }
 
