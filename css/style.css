@@ -145,6 +145,18 @@ main { counter-reset: stage; }
 .section-head h2 { font-size: clamp(28px, 4vw, 40px); margin-top: 10px; }
 .section-sub { color: var(--ink); margin-top: 14px; font-size: 15.5px; }
 
+/* Sub-sections nested inside a merged parent section (e.g. Software /
+   Bare Metal living together under Projects) — same anatomy as
+   .section-head at a smaller scale, no counter badge of its own. */
+.project-block { position: relative; margin-top: 8px; }
+.project-block + .project-block { margin-top: 64px; }
+.project-block-head { margin-bottom: 40px; max-width: 640px; }
+.project-block-head h3 { font-size: clamp(22px, 3.2vw, 32px); margin-top: 10px; }
+/* Nested pen-icons sit much closer to their heading than a top-level
+   section's (no big top padding to hide behind), so pull them further up
+   and size them down a touch to clear the project cards below. */
+.project-block .pen-icon { width: 130px; height: 130px; top: -44px; }
+
 .kicker {
   display: inline-flex;
   align-items: center;
@@ -198,7 +210,8 @@ main { counter-reset: stage; }
   transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .section.in-view .pen-icon,
-.contact.in-view .pen-icon {
+.contact.in-view .pen-icon,
+.project-block.in-view .pen-icon {
   opacity: 0.9;
   transform: scale(1) rotate(0deg);
 }
@@ -216,7 +229,8 @@ main { counter-reset: stage; }
   transition: stroke-dashoffset 1.4s cubic-bezier(0.5, 0, 0.25, 1);
 }
 .section.in-view .pen-icon svg,
-.contact.in-view .pen-icon svg {
+.contact.in-view .pen-icon svg,
+.project-block.in-view .pen-icon svg {
   stroke-dashoffset: 0;
   animation: pen-float 7s ease-in-out 1.4s infinite;
 }
@@ -515,7 +529,7 @@ main { counter-reset: stage; }
 .hero-link-arrow svg { width: 15px; height: 15px; }
 .hero-link:hover .hero-link-arrow { transform: translate(2px, -2px); border-color: var(--accent); color: var(--accent); }
 
-.hero-photo { position: relative; max-width: 400px; margin-left: auto; margin-right: 0; }
+.hero-photo { position: relative; max-width: 400px; margin-left: auto; margin-right: 0; align-self: center; margin-top: -95px; }
 .hero-glow {
   position: absolute;
   top: -15%;
@@ -727,7 +741,7 @@ main { counter-reset: stage; }
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
-  padding: 24px;
+  padding: 22px;
   transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease;
 }
 .exp-card:hover {
@@ -761,28 +775,26 @@ main { counter-reset: stage; }
 }
 .org-badge img { width: 100%; height: 100%; object-fit: cover; }
 .exp-pill {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 700;
-  padding: 5px 12px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 11px;
   border-radius: 999px;
   white-space: nowrap;
 }
 .exp-pill-current {
   background: var(--org-color, var(--accent));
   color: var(--on-accent);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
 }
 .exp-pill-past {
   background: transparent;
   border: 1px solid var(--line-strong);
   color: var(--ink-50);
-  font-weight: 600;
+  font-weight: 500;
 }
-.exp-card h3 { font-size: 18px; font-weight: 700; }
-.exp-meta { font-size: 13.5px; font-weight: 600; color: var(--org-color, var(--accent)); margin-top: 5px; }
-.exp-desc { color: var(--ink-70); font-size: 14.5px; margin-top: 12px; }
+.exp-card h3 { font-size: 17px; font-weight: 700; }
+.exp-meta { font-size: 13px; font-weight: 500; color: var(--org-color, var(--accent)); margin-top: 4px; }
+.exp-desc { color: var(--ink-70); font-size: 14px; margin-top: 8px; }
 
 /* ===================== Project / event cards ===================== */
 .proj-grid {
@@ -823,12 +835,12 @@ main { counter-reset: stage; }
 .proj-card-more:hover { box-shadow: none; border-color: var(--line-strong); }
 
 /* ===================== Skills / stack ===================== */
-.skill-cols {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+.tech-marquees {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
-.skill-col h4 {
+.tech-marquee-group h4 {
   font-size: 14px;
   color: var(--ink);
   font-family: var(--font-mono);
@@ -837,24 +849,56 @@ main { counter-reset: stage; }
   letter-spacing: 0.06em;
   margin-bottom: 16px;
 }
-.chip-row { display: flex; flex-wrap: wrap; gap: 9px; }
-.chip {
+/* Infinite logo marquee: the track's item list is duplicated once in the
+   markup, then animated exactly -50% so the loop point is invisible. Each
+   row's own edges fade to transparent via a mask, and hovering pauses it. */
+.marquee-row {
+  position: relative;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 12px;
+  animation: marquee-left 32s linear infinite;
+}
+.marquee-row.dir-right .marquee-track { animation-name: marquee-right; }
+.marquee-row:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+.tech-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  flex-shrink: 0;
   border: 1px solid var(--line-strong);
-  padding: 7px 14px;
+  padding: 8px 16px;
   border-radius: 999px;
   font-size: 13.5px;
   font-weight: 500;
   color: var(--ink);
   background: var(--bg-card);
+  white-space: nowrap;
   transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.chip:hover {
+.tech-pill:hover {
   background: var(--accent);
   border-color: transparent;
   color: var(--on-accent);
   transform: translateY(-2px);
   box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--accent) 70%, transparent);
 }
+.tech-pill-icon { width: 17px; height: 17px; flex-shrink: 0; object-fit: contain; }
+svg.tech-pill-icon { color: var(--accent); stroke-width: 1.7; }
+.tech-pill:hover svg.tech-pill-icon { color: var(--on-accent); }
 
 /* ===================== Racing ===================== */
 .racing-grid {
@@ -1090,14 +1134,14 @@ main { counter-reset: stage; }
 /* Cascading stagger for grid/list children */
 .proj-grid > .reveal:nth-child(2),
 .hobby-grid > .reveal:nth-child(2),
-.skill-cols > .reveal:nth-child(2),
+.tech-marquees > .reveal:nth-child(2),
 .contact-cards > .reveal:nth-child(2),
 .exp-grid > .reveal:nth-child(2),
 .timeline > .reveal:nth-child(2),
 .trophy-strip > .reveal:nth-child(2) { transition-delay: 0.08s; }
 .proj-grid > .reveal:nth-child(3),
 .hobby-grid > .reveal:nth-child(3),
-.skill-cols > .reveal:nth-child(3),
+.tech-marquees > .reveal:nth-child(3),
 .contact-cards > .reveal:nth-child(3),
 .exp-grid > .reveal:nth-child(3),
 .timeline > .reveal:nth-child(3),
@@ -1110,6 +1154,7 @@ main { counter-reset: stage; }
 .trophy-strip > .reveal:nth-child(4) { transition-delay: 0.24s; }
 .hobby-grid > .reveal:nth-child(5),
 .exp-grid > .reveal:nth-child(5) { transition-delay: 0.32s; }
+.exp-grid > .reveal:nth-child(6) { transition-delay: 0.4s; }
 
 /* Icon pop-in — the small icon glyph inside each card (hobby icon-badges,
    org logos, trophy markers) scales/fades in just after its card reveals,
@@ -1152,10 +1197,10 @@ main { counter-reset: stage; }
 
 @media (max-width: 920px) {
   .hero-inner { grid-template-columns: 1fr; min-height: auto; }
-  .hero-photo { max-width: 380px; margin-left: auto; margin-right: auto; }
+  .hero-photo { max-width: 380px; margin-left: auto; margin-right: auto; margin-top: 24px; }
   .hero-bg { background-image: none; }
   .proj-grid, .proj-grid-2, .exp-grid { grid-template-columns: 1fr; }
-  .skill-cols { grid-template-columns: 1fr; gap: 26px; }
+  .tech-marquees { gap: 24px; }
   .hobby-grid { grid-template-columns: 1fr 1fr; }
   .racing-grid { grid-template-columns: 1fr; }
   .contact-wrapper { grid-template-columns: 1fr; }
@@ -1224,4 +1269,6 @@ main { counter-reset: stage; }
   .pen-icon { opacity: 0.9 !important; transform: none !important; transition: none; }
   .pen-icon svg { animation: none !important; }
   .icon-badge svg, .org-badge img, .trophy-pos svg { transition: none; opacity: 1; transform: none; }
+  .marquee-track { animation: none; }
+  .marquee-row { overflow-x: auto; }
 }
