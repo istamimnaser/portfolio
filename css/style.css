@@ -15,6 +15,7 @@
   --font-head: "Space Grotesk", "Inter", sans-serif;
   --font-body: "Inter", sans-serif;
   --font-mono: "JetBrains Mono", "SFMono-Regular", monospace;
+  --font-display: "Playfair Display", "Georgia", serif;
   --max: 1120px;
   --radius: 16px;
   --radius-sm: 10px;
@@ -834,6 +835,176 @@ main { counter-reset: stage; }
 .proj-card-more { justify-content: space-between; border-style: dashed; box-shadow: none; background: transparent; }
 .proj-card-more:hover { box-shadow: none; border-color: var(--line-strong); }
 
+/* ---- Numbered project rows: each project is its own labelled block with
+   a colour-band "teaser" sitting on top of its screenshot, like one card. ---- */
+.proj-rows {
+  counter-reset: proj;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px 32px;
+}
+.proj-row { counter-increment: proj; }
+.proj-row-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.proj-row-num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink-50);
+}
+.proj-row-num::before { content: counter(proj, decimal-leading-zero); }
+.proj-row-top-line { flex: 1; height: 1px; background: var(--line); }
+.proj-row-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  color: var(--ink-70);
+  white-space: nowrap;
+}
+.proj-row-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(22px, 2.4vw, 28px);
+  margin-bottom: 16px;
+}
+.proj-row-visual {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.proj-row-visual:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md), 0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+.proj-row-teaser {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 20px;
+  background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 55%, var(--bg)));
+}
+.proj-row-teaser p { color: var(--on-accent); font-size: 14.5px; font-weight: 500; }
+.proj-row-link-icon { width: 18px; height: 18px; color: var(--on-accent); flex-shrink: 0; }
+.proj-row-media .photo-card { margin: 0; border: none; border-radius: 0; aspect-ratio: 16 / 10; }
+.proj-row-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+
+/* Bento touch: the first row spans the full width as a featured showcase,
+   with a wider banner image and a bigger title; the rest stay in the tidy
+   2-column grid below it for a clear, uncluttered hierarchy. */
+.proj-row--featured { grid-column: 1 / -1; }
+.proj-row--featured .proj-row-title { font-size: clamp(26px, 3.2vw, 38px); }
+.proj-row--featured .proj-row-media .photo-card { aspect-ratio: 21 / 9; }
+.proj-row--featured .proj-row-teaser { padding: 22px 26px; }
+.proj-row--featured .proj-row-teaser p { font-size: 16px; }
+.tech-tag-pill {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink-70);
+  background: var(--bg-card);
+  border: 1px solid var(--line-strong);
+  padding: 6px 13px;
+  border-radius: 999px;
+}
+
+.proj-rows-more { display: flex; justify-content: center; margin-top: 48px; }
+.btn-pill { border-radius: 999px; padding: 14px 28px; }
+
+/* ---- Project modal (lightbox opened from a project row) ---- */
+.project-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.project-modal.open { opacity: 1; pointer-events: auto; }
+.project-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  backdrop-filter: blur(6px);
+}
+.project-modal-panel {
+  position: relative;
+  max-width: 720px;
+  width: 100%;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: var(--bg-card);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(16px) scale(0.98);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.project-modal.open .project-modal-panel { transform: translateY(0) scale(1); }
+.project-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-soft);
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+.project-modal-close svg { width: 16px; height: 16px; }
+.project-modal-media { aspect-ratio: 16 / 9; }
+.project-modal-media .photo-card { margin: 0; border: none; border-radius: 0; height: 100%; }
+.project-modal-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.project-modal-body { padding: 28px; }
+.pm-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+#pm-num::before { content: none; } /* JS sets the number directly; the .proj-rows counter isn't in scope here */
+.project-modal-body p { color: var(--ink-70); font-size: 15px; margin-top: 14px; line-height: 1.6; }
+.pm-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.project-modal-links { display: flex; align-items: center; gap: 14px; margin-top: 22px; flex-wrap: wrap; }
+.btn-disabled {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ink-50);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  cursor: default;
+}
+
 /* ===================== Skills / stack ===================== */
 .tech-marquees {
   display: flex;
@@ -1133,6 +1304,7 @@ svg.tech-pill-icon { color: var(--accent); stroke-width: 1.7; }
 
 /* Cascading stagger for grid/list children */
 .proj-grid > .reveal:nth-child(2),
+.proj-rows > .reveal:nth-child(2),
 .hobby-grid > .reveal:nth-child(2),
 .tech-marquees > .reveal:nth-child(2),
 .contact-cards > .reveal:nth-child(2),
@@ -1140,6 +1312,7 @@ svg.tech-pill-icon { color: var(--accent); stroke-width: 1.7; }
 .timeline > .reveal:nth-child(2),
 .trophy-strip > .reveal:nth-child(2) { transition-delay: 0.08s; }
 .proj-grid > .reveal:nth-child(3),
+.proj-rows > .reveal:nth-child(3),
 .hobby-grid > .reveal:nth-child(3),
 .tech-marquees > .reveal:nth-child(3),
 .contact-cards > .reveal:nth-child(3),
@@ -1147,13 +1320,16 @@ svg.tech-pill-icon { color: var(--accent); stroke-width: 1.7; }
 .timeline > .reveal:nth-child(3),
 .trophy-strip > .reveal:nth-child(3) { transition-delay: 0.16s; }
 .proj-grid > .reveal:nth-child(4),
+.proj-rows > .reveal:nth-child(4),
 .hobby-grid > .reveal:nth-child(4),
 .contact-cards > .reveal:nth-child(4),
 .exp-grid > .reveal:nth-child(4),
 .timeline > .reveal:nth-child(4),
 .trophy-strip > .reveal:nth-child(4) { transition-delay: 0.24s; }
+.proj-rows > .reveal:nth-child(5),
 .hobby-grid > .reveal:nth-child(5),
 .exp-grid > .reveal:nth-child(5) { transition-delay: 0.32s; }
+.proj-rows > .reveal:nth-child(6) { transition-delay: 0.4s; }
 .exp-grid > .reveal:nth-child(6) { transition-delay: 0.4s; }
 
 /* Icon pop-in — the small icon glyph inside each card (hobby icon-badges,
@@ -1199,7 +1375,7 @@ svg.tech-pill-icon { color: var(--accent); stroke-width: 1.7; }
   .hero-inner { grid-template-columns: 1fr; min-height: auto; }
   .hero-photo { max-width: 380px; margin-left: auto; margin-right: auto; margin-top: 24px; }
   .hero-bg { background-image: none; }
-  .proj-grid, .proj-grid-2, .exp-grid { grid-template-columns: 1fr; }
+  .proj-grid, .proj-grid-2, .exp-grid, .proj-rows { grid-template-columns: 1fr; }
   .tech-marquees { gap: 24px; }
   .hobby-grid { grid-template-columns: 1fr 1fr; }
   .racing-grid { grid-template-columns: 1fr; }

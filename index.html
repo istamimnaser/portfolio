@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-  href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&family=Inter:wght@400..700&family=JetBrains+Mono:wght@400..600&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&family=Inter:wght@400..700&family=JetBrains+Mono:wght@400..600&family=Playfair+Display:ital,wght@1,500;1,600&display=swap"
   rel="stylesheet" />
 
 <link rel="stylesheet" href="css/style.css" />
@@ -19,6 +19,7 @@
 <body>
 <svg style="display:none" aria-hidden="true">
   <symbol id="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+  <symbol id="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
   <symbol id="icon-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v18"/><path d="M5 4h13l-3 4 3 4H5"/></symbol>
   <symbol id="icon-chip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect pathLength="1" x="6" y="6" width="12" height="12" rx="1"/><path pathLength="1" d="M9 2v3"/><path pathLength="1" d="M15 2v3"/><path pathLength="1" d="M9 19v3"/><path pathLength="1" d="M15 19v3"/><path pathLength="1" d="M2 9h3"/><path pathLength="1" d="M2 15h3"/><path pathLength="1" d="M19 9h3"/><path pathLength="1" d="M19 15h3"/></symbol>
   <symbol id="icon-podium" viewBox="0 0 24 24">
@@ -254,30 +255,181 @@
         <span class="kicker"><svg class="kicker-icon"><use href="#icon-code"/></svg>Software</span>
         <h3>Code in the <em class="accent">Wild</em></h3>
       </div>
-      <div class="proj-grid">
-        <div class="proj-card reveal">
-          <div class="photo-card photo-card--wide">
-            <svg><use href="#icon-image"/></svg>
-            <span>Add project photo</span>
+      <div class="proj-rows">
+        <article class="proj-row proj-row--featured reveal">
+          <div class="proj-row-top">
+            <span class="proj-row-num"></span>
+            <span class="proj-row-tag">Embedded · FSAE</span>
           </div>
-          <span class="proj-tag">Formula IUT · 2024 — present</span>
-          <h3>Autonomous Driving Stack</h3>
-          <p>Contributing to the autonomous driving project for the team's current FSAE car.</p>
-        </div>
-        <div class="proj-card reveal">
-          <div class="photo-card photo-card--wide">
-            <svg><use href="#icon-image"/></svg>
-            <span>Add project photo</span>
+          <h3 class="proj-row-title">Autonomous Driving Stack</h3>
+          <button type="button" class="proj-row-visual"
+            data-title="Autonomous Driving Stack"
+            data-category="Embedded · FSAE"
+            data-desc="Contributing to the autonomous driving project for the team's current FSAE car."
+            data-tags="C++,Python,CAN bus">
+            <div class="proj-row-teaser">
+              <p>Contributing to the autonomous driving project for the team's current FSAE car.</p>
+              <svg class="proj-row-link-icon"><use href="#icon-arrow"/></svg>
+            </div>
+            <div class="proj-row-media">
+              <div class="photo-card photo-card--wide">
+                <svg><use href="#icon-image"/></svg>
+                <span>Add project photo</span>
+              </div>
+            </div>
+          </button>
+          <div class="proj-row-tags">
+            <span class="tech-tag-pill">C++</span>
+            <span class="tech-tag-pill">Python</span>
+            <span class="tech-tag-pill">CAN bus</span>
           </div>
-          <span class="proj-tag">Formula IUT</span>
-          <h3>Cockpit Telemetry Display</h3>
-          <p>The car's digital dashboard, surfacing live vehicle data to the driver — tested from the cockpit, by me.</p>
-        </div>
-        <a class="proj-card proj-card-more reveal" href="https://github.com/istamimnaser" target="_blank" rel="noopener">
-          <h3>More on GitHub <svg class="arr-icon"><use href="#icon-arrow"/></svg></h3>
-          <p>Course projects and other builds are up on my GitHub — new things get added as they're ready.</p>
-          <span class="proj-note">github.com/istamimnaser</span>
-        </a>
+        </article>
+
+        <article class="proj-row reveal">
+          <div class="proj-row-top">
+            <span class="proj-row-num"></span>
+            <span class="proj-row-tag">Embedded</span>
+          </div>
+          <h3 class="proj-row-title">Cockpit Telemetry Display</h3>
+          <button type="button" class="proj-row-visual"
+            data-title="Cockpit Telemetry Display"
+            data-category="Embedded"
+            data-desc="The car's digital dashboard, surfacing live vehicle data to the driver — tested from the cockpit, by me."
+            data-tags="Arduino,MoTeC,CAN bus">
+            <div class="proj-row-teaser">
+              <p>The car's digital dashboard, surfacing live vehicle data to the driver.</p>
+              <svg class="proj-row-link-icon"><use href="#icon-arrow"/></svg>
+            </div>
+            <div class="proj-row-media">
+              <div class="photo-card photo-card--wide">
+                <svg><use href="#icon-image"/></svg>
+                <span>Add project photo</span>
+              </div>
+            </div>
+          </button>
+          <div class="proj-row-tags">
+            <span class="tech-tag-pill">Arduino</span>
+            <span class="tech-tag-pill">MoTeC</span>
+            <span class="tech-tag-pill">CAN bus</span>
+          </div>
+        </article>
+
+        <!-- DUMMY placeholder rows below — swap in real projects (title, tag,
+             description, photo, tags, and data-live / data-github) whenever ready. -->
+        <article class="proj-row reveal">
+          <div class="proj-row-top">
+            <span class="proj-row-num"></span>
+            <span class="proj-row-tag">Placeholder</span>
+          </div>
+          <h3 class="proj-row-title">Dummy Project One</h3>
+          <button type="button" class="proj-row-visual"
+            data-title="Dummy Project One"
+            data-category="Placeholder"
+            data-desc="Placeholder row to preview the layout with more entries. Swap in a real title, tag, description, photo and links."
+            data-tags="JavaScript,Node.js">
+            <div class="proj-row-teaser">
+              <p>Placeholder row — swap in a real project.</p>
+              <svg class="proj-row-link-icon"><use href="#icon-arrow"/></svg>
+            </div>
+            <div class="proj-row-media">
+              <div class="photo-card photo-card--wide">
+                <svg><use href="#icon-image"/></svg>
+                <span>Add project photo</span>
+              </div>
+            </div>
+          </button>
+          <div class="proj-row-tags">
+            <span class="tech-tag-pill">JavaScript</span>
+            <span class="tech-tag-pill">Node.js</span>
+          </div>
+        </article>
+
+        <article class="proj-row reveal">
+          <div class="proj-row-top">
+            <span class="proj-row-num"></span>
+            <span class="proj-row-tag">Placeholder</span>
+          </div>
+          <h3 class="proj-row-title">Dummy Project Two</h3>
+          <button type="button" class="proj-row-visual"
+            data-title="Dummy Project Two"
+            data-category="Placeholder"
+            data-desc="Placeholder row to preview the layout with more entries. Swap in a real title, tag, description, photo and links."
+            data-tags="TypeScript,MongoDB">
+            <div class="proj-row-teaser">
+              <p>Placeholder row — swap in a real project.</p>
+              <svg class="proj-row-link-icon"><use href="#icon-arrow"/></svg>
+            </div>
+            <div class="proj-row-media">
+              <div class="photo-card photo-card--wide">
+                <svg><use href="#icon-image"/></svg>
+                <span>Add project photo</span>
+              </div>
+            </div>
+          </button>
+          <div class="proj-row-tags">
+            <span class="tech-tag-pill">TypeScript</span>
+            <span class="tech-tag-pill">MongoDB</span>
+          </div>
+        </article>
+
+        <article class="proj-row reveal">
+          <div class="proj-row-top">
+            <span class="proj-row-num"></span>
+            <span class="proj-row-tag">Placeholder</span>
+          </div>
+          <h3 class="proj-row-title">Dummy Project Three</h3>
+          <button type="button" class="proj-row-visual"
+            data-title="Dummy Project Three"
+            data-category="Placeholder"
+            data-desc="Placeholder row to preview the layout with more entries. Swap in a real title, tag, description, photo and links."
+            data-tags="Java,SQL">
+            <div class="proj-row-teaser">
+              <p>Placeholder row — swap in a real project.</p>
+              <svg class="proj-row-link-icon"><use href="#icon-arrow"/></svg>
+            </div>
+            <div class="proj-row-media">
+              <div class="photo-card photo-card--wide">
+                <svg><use href="#icon-image"/></svg>
+                <span>Add project photo</span>
+              </div>
+            </div>
+          </button>
+          <div class="proj-row-tags">
+            <span class="tech-tag-pill">Java</span>
+            <span class="tech-tag-pill">SQL</span>
+          </div>
+        </article>
+
+        <article class="proj-row reveal">
+          <div class="proj-row-top">
+            <span class="proj-row-num"></span>
+            <span class="proj-row-tag">Placeholder</span>
+          </div>
+          <h3 class="proj-row-title">Dummy Project Four</h3>
+          <button type="button" class="proj-row-visual"
+            data-title="Dummy Project Four"
+            data-category="Placeholder"
+            data-desc="Placeholder row to preview the layout with more entries. Swap in a real title, tag, description, photo and links."
+            data-tags="Express.js,Git">
+            <div class="proj-row-teaser">
+              <p>Placeholder row — swap in a real project.</p>
+              <svg class="proj-row-link-icon"><use href="#icon-arrow"/></svg>
+            </div>
+            <div class="proj-row-media">
+              <div class="photo-card photo-card--wide">
+                <svg><use href="#icon-image"/></svg>
+                <span>Add project photo</span>
+              </div>
+            </div>
+          </button>
+          <div class="proj-row-tags">
+            <span class="tech-tag-pill">Express.js</span>
+            <span class="tech-tag-pill">Git</span>
+          </div>
+        </article>
+      </div>
+      <div class="proj-rows-more">
+        <a class="btn btn-signal btn-pill" href="projects.html">Show More Projects <span class="arr">→</span></a>
       </div>
     </div>
 
@@ -631,6 +783,37 @@
   </section>
 </main>
 
+<!-- ============ PROJECT MODAL ============ -->
+<div class="project-modal" id="project-modal" aria-hidden="true">
+  <div class="project-modal-backdrop" data-close></div>
+  <div class="project-modal-panel" role="dialog" aria-modal="true" aria-labelledby="pm-title">
+    <button type="button" class="project-modal-close" data-close aria-label="Close">
+      <svg><use href="#icon-x"/></svg>
+    </button>
+    <div class="project-modal-media">
+      <div class="photo-card photo-card--wide" id="pm-photo-placeholder">
+        <svg><use href="#icon-image"/></svg>
+        <span>Add project photo</span>
+      </div>
+      <img id="pm-image" alt="" hidden />
+    </div>
+    <div class="project-modal-body">
+      <div class="pm-top">
+        <span class="proj-row-num" id="pm-num"></span>
+        <span class="proj-row-tag" id="pm-tag"></span>
+      </div>
+      <h3 class="proj-row-title" id="pm-title"></h3>
+      <p id="pm-desc"></p>
+      <div class="pm-tags" id="pm-tags"></div>
+      <div class="project-modal-links">
+        <a id="pm-live" class="btn btn-signal" target="_blank" rel="noopener" hidden>View Project <span class="arr">→</span></a>
+        <span id="pm-soon" class="btn-disabled" hidden>Coming soon</span>
+        <a id="pm-github" class="btn btn-ghost" target="_blank" rel="noopener">View on GitHub <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
   <div class="footer-bottom">
@@ -645,5 +828,6 @@
 <script src="js/pen-icons.js"></script>
 <script src="js/main.js?v=2"></script>
 <script src="js/github-activity.js"></script>
+<script src="js/project-modal.js"></script>
 </body>
 </html>
