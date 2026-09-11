@@ -1329,7 +1329,8 @@ svg.tech-pill-icon { color: var(--accent); stroke-width: 1.7; }
 .proj-rows > .reveal:nth-child(5),
 .hobby-grid > .reveal:nth-child(5),
 .exp-grid > .reveal:nth-child(5) { transition-delay: 0.32s; }
-.proj-rows > .reveal:nth-child(6) { transition-delay: 0.4s; }
+.proj-rows > .reveal:nth-child(6),
+.proj-rows > .reveal:nth-child(7) { transition-delay: 0.4s; }
 .exp-grid > .reveal:nth-child(6) { transition-delay: 0.4s; }
 
 /* Icon pop-in — the small icon glyph inside each card (hobby icon-badges,

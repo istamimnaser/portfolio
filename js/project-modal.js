@@ -5,8 +5,8 @@
   const modal = document.getElementById("project-modal");
   if (!modal) return;
 
+  const media = document.getElementById("pm-media");
   const img = document.getElementById("pm-image");
-  const placeholder = document.getElementById("pm-photo-placeholder");
   const num = document.getElementById("pm-num");
   const tag = document.getElementById("pm-tag");
   const title = document.getElementById("pm-title");
@@ -25,11 +25,9 @@
     if (d.image) {
       img.src = d.image;
       img.alt = d.title || "";
-      img.hidden = false;
-      placeholder.hidden = true;
+      media.hidden = false;
     } else {
-      img.hidden = true;
-      placeholder.hidden = false;
+      media.hidden = true;
     }
 
     num.textContent = String(index + 1).padStart(2, "0");
@@ -58,7 +56,12 @@
       live.hidden = true;
       soon.hidden = false;
     }
-    github.href = d.github || GITHUB_PROFILE;
+    if (d.hideGithub === "true") {
+      github.hidden = true;
+    } else {
+      github.hidden = false;
+      github.href = d.github || GITHUB_PROFILE;
+    }
 
     lastFocused = document.activeElement;
     modal.classList.add("open");

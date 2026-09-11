@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620">
+  <defs>
+    <clipPath id="round"><rect x="0" y="0" width="960" height="620" rx="14"/></clipPath>
+  </defs>
+  <g clip-path="url(#round)">
+    <rect x="0" y="0" width="960" height="620" fill="#0B0C10"/>
+
+    <!-- title bar -->
+    <rect x="0" y="0" width="960" height="42" fill="#15171C"/>
+    <circle cx="26" cy="21" r="6.5" fill="#FF5F56"/>
+    <circle cx="48" cy="21" r="6.5" fill="#FFBD2E"/>
+    <circle cx="70" cy="21" r="6.5" fill="#27C93F"/>
+    <text x="480" y="26" text-anchor="middle" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="13" fill="#8A8F98">drim — zsh — 100x32</text>
+
+    <!-- body -->
+    <g font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="16" xml:space="preserve">
+      <text x="28" y="78" fill="#F2F0EA"><tspan fill="#E8825C">$ </tspan>./drim examples/demo.drim</text>
+
+      <text x="28" y="126" fill="#6B7280">// string interpolation</text>
+      <text x="28" y="150" fill="#F2F0EA">name = <tspan fill="#8FD19E">&quot;Drimmer&quot;</tspan></text>
+      <text x="28" y="174" fill="#F2F0EA">wake(<tspan fill="#8FD19E">&quot;Hello, {name}!&quot;</tspan>)</text>
+      <text x="28" y="198" fill="#7EE787">Hello, Drimmer!</text>
+
+      <text x="28" y="246" fill="#6B7280">// recursion</text>
+      <text x="28" y="270" fill="#F2F0EA">wake(<tspan fill="#8FD19E">&quot;Factorial of 5: &quot;</tspan> + factorial(5))</text>
+      <text x="28" y="294" fill="#7EE787">Factorial of 5: 120</text>
+
+      <text x="28" y="342" fill="#6B7280">// physics — F = ma</text>
+      <text x="28" y="366" fill="#F2F0EA">f = force(10, 9.8)</text>
+      <text x="28" y="390" fill="#F2F0EA">wake(<tspan fill="#8FD19E">&quot;Force: {f} N&quot;</tspan>)</text>
+      <text x="28" y="414" fill="#7EE787">Force: 98 N</text>
+
+      <text x="28" y="462" fill="#6B7280">// unit conversion</text>
+      <text x="28" y="486" fill="#F2F0EA">tempF = convert(25, <tspan fill="#8FD19E">&quot;c_f&quot;</tspan>)</text>
+      <text x="28" y="510" fill="#F2F0EA">wake(<tspan fill="#8FD19E">&quot;25C in Fahrenheit: {tempF}&quot;</tspan>)</text>
+      <text x="28" y="534" fill="#7EE787">25C in Fahrenheit: 77</text>
+
+      <text x="28" y="582" fill="#F2F0EA"><tspan fill="#E8825C">$ </tspan><tspan fill="#F2F0EA">&#9608;</tspan></text>
+    </g>
+  </g>
+</svg>
