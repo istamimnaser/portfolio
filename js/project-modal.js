@@ -13,7 +13,6 @@
   const desc = document.getElementById("pm-desc");
   const tagsWrap = document.getElementById("pm-tags");
   const live = document.getElementById("pm-live");
-  const soon = document.getElementById("pm-soon");
   const github = document.getElementById("pm-github");
 
   const GITHUB_PROFILE = "https://github.com/istamimnaser";
@@ -51,10 +50,8 @@
     if (d.live) {
       live.href = d.live;
       live.hidden = false;
-      soon.hidden = true;
     } else {
       live.hidden = true;
-      soon.hidden = false;
     }
     if (d.hideGithub === "true") {
       github.hidden = true;

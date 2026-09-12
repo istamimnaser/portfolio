@@ -485,30 +485,96 @@
         <h3>From Breadboard to <em class="accent">Dashboard</em></h3>
         <p class="section-sub">I design and build my own electronics<span class="fade-text"> — microcontroller firmware, wiring, CAN / serial data and enclosure fabrication, end to end.</span></p>
       </div>
-      <div class="proj-grid">
-        <div class="proj-card reveal">
-          <div class="photo-card photo-card--wide">
-            <svg><use href="#icon-image"/></svg>
-            <span>Add build photo</span>
+      <div class="proj-rows">
+        <article class="proj-row proj-row--featured reveal">
+          <div class="proj-row-top">
+            <span class="proj-row-num"></span>
+            <span class="proj-row-tag">Digital Logic Design</span>
           </div>
-          <span class="proj-tag">Personal build</span>
-          <h3>Sim Rig Control Deck</h3>
-          <p>Custom button boxes, wired and fabricated from scratch — firmware, wiring loom and enclosure design.</p>
-        </div>
-        <div class="proj-card reveal">
-          <div class="photo-card photo-card--wide">
-            <svg><use href="#icon-image"/></svg>
-            <span>Add build photo</span>
+          <h3 class="proj-row-title">Among Us Reactor Task</h3>
+          <button type="button" class="proj-row-visual"
+            data-title="Among Us Reactor Task"
+            data-category="Digital Logic Design"
+            data-desc="A Proteus simulation of the Among Us reactor task, built entirely with digital logic design — no microcontroller or programming. Switches act as input, LEDs replay the sequence, and pure logic gates, counters and flip-flops validate the player's input. Built for our second semester project."
+            data-tags="Proteus,Digital Logic"
+            data-image="assets/projects/among-us-reactor-dld.png"
+            data-github="https://github.com/SMTEmon/Proteus_Project_Amoug_Us">
+            <div class="proj-row-teaser">
+              <p>The Among Us reactor mini-game, rebuilt with pure logic gates — zero code.</p>
+              <svg class="proj-row-link-icon"><use href="#icon-arrow"/></svg>
+            </div>
+            <div class="proj-row-media">
+              <div class="photo-card photo-card--wide photo-card--filled photo-card--contain">
+                <img src="assets/projects/among-us-reactor-dld.png" alt="Among Us Reactor Task Proteus schematic and control panel" />
+              </div>
+            </div>
+          </button>
+          <div class="proj-row-tags">
+            <span class="tech-tag-pill">Proteus</span>
+            <span class="tech-tag-pill">Digital Logic</span>
           </div>
-          <span class="proj-tag">Personal build</span>
-          <h3>Haptic &amp; Display Modules</h3>
-          <p>Dashboard screens and haptic feedback modules feeding live CAN / serial data into the rig.</p>
-        </div>
-        <div class="proj-card proj-card-more reveal">
-          <h3>More builds — coming soon</h3>
-          <p>More electronics builds are already in the works.</p>
-        </div>
+        </article>
+
+        <article class="proj-row reveal">
+          <div class="proj-row-top">
+            <span class="proj-row-num"></span>
+            <span class="proj-row-tag">Sim Racing · Hardware</span>
+          </div>
+          <h3 class="proj-row-title">Sim Rig Button Box</h3>
+          <button type="button" class="proj-row-visual"
+            data-title="Sim Rig Button Box"
+            data-category="Sim Racing · Hardware"
+            data-desc="A custom button box for my sim rig, in a 3D-printed case — an 8x8 LED-matrix gear indicator, flag signal lights, and an RPM shift-light bar with a live spotter. Built on an Arduino Leonardo; works standalone or wired into SimHub. I've since built a few more for my sim racing community."
+            data-tags="Arduino Leonardo,C++,SimHub"
+            data-image="assets/projects/sim-rig-button-box.jpg"
+            data-github="https://github.com/istamimnaser/SimRacing-Button-Box-With-Display">
+            <div class="proj-row-teaser">
+              <p>Gear indicator, flag lights and an RPM shift-light bar for my sim rig — built on an Arduino Leonardo.</p>
+              <svg class="proj-row-link-icon"><use href="#icon-arrow"/></svg>
+            </div>
+            <div class="proj-row-media">
+              <div class="photo-card photo-card--wide photo-card--filled photo-card--align-low">
+                <img src="assets/projects/sim-rig-button-box.jpg" alt="Sim rig button box with gear LED matrix, flag lights and RPM bar" />
+              </div>
+            </div>
+          </button>
+          <div class="proj-row-tags">
+            <span class="tech-tag-pill">Arduino Leonardo</span>
+            <span class="tech-tag-pill">C++</span>
+            <span class="tech-tag-pill">SimHub</span>
+          </div>
+        </article>
+
+        <article class="proj-row reveal">
+          <div class="proj-row-top">
+            <span class="proj-row-num"></span>
+            <span class="proj-row-tag">Embedded · Robotics</span>
+          </div>
+          <h3 class="proj-row-title">Robo Soccer</h3>
+          <button type="button" class="proj-row-visual"
+            data-title="Robo Soccer"
+            data-category="Embedded · Robotics"
+            data-desc="A two-motor soccer-playing robot car controlled over PWM by an ESP32, coded and flashed by hand for our second semester electronics project."
+            data-tags="ESP32,C++,PWM"
+            data-image="assets/projects/robo-soccer.jpg">
+            <div class="proj-row-teaser">
+              <p>An ESP32-controlled soccer robot, built for our second semester electronics project.</p>
+              <svg class="proj-row-link-icon"><use href="#icon-arrow"/></svg>
+            </div>
+            <div class="proj-row-media">
+              <div class="photo-card photo-card--wide photo-card--filled photo-card--align-bottom">
+                <img src="assets/projects/robo-soccer.jpg" alt="Robo Soccer ESP32 robot with motor wiring and Arduino IDE code" />
+              </div>
+            </div>
+          </button>
+          <div class="proj-row-tags">
+            <span class="tech-tag-pill">ESP32</span>
+            <span class="tech-tag-pill">C++</span>
+            <span class="tech-tag-pill">PWM</span>
+          </div>
+        </article>
       </div>
+      <p class="section-sub" style="margin-top:24px;">More electronics builds are already in the works.</p>
     </div>
   </section>
 
@@ -848,7 +914,6 @@
       <div class="pm-tags" id="pm-tags"></div>
       <div class="project-modal-links">
         <a id="pm-live" class="btn btn-signal" target="_blank" rel="noopener" hidden>View Project <span class="arr">→</span></a>
-        <span id="pm-soon" class="btn-disabled" hidden>Coming soon</span>
         <a id="pm-github" class="btn btn-ghost" target="_blank" rel="noopener">View on GitHub <span class="arr">→</span></a>
       </div>
     </div>

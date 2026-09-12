@@ -617,6 +617,14 @@ main { counter-reset: stage; }
   transform-origin: 50% 42%;
   display: block;
 }
+/* For composite/wide images where nothing should be cropped out (e.g. a
+   side-by-side schematic + hardware photo) — shows the whole image
+   letterboxed instead of cover-cropping the edges away. */
+.photo-card--contain img { object-fit: contain; transform: none; object-position: center; }
+/* Nudge the crop window toward the bottom of a tall source photo (e.g. a
+   portrait shot where the interesting part sits lower in the frame). */
+.photo-card--align-bottom img { object-position: 50% 88%; transform-origin: 50% 88%; }
+.photo-card--align-low img { object-position: 50% 28%; transform-origin: 50% 28%; }
 .photo-card svg { width: 26px; height: 26px; opacity: 0.6; }
 .photo-card span {
   font-family: var(--font-mono);
@@ -984,26 +992,13 @@ main { counter-reset: stage; }
 .project-modal-close svg { width: 16px; height: 16px; }
 .project-modal-media { aspect-ratio: 16 / 9; }
 .project-modal-media .photo-card { margin: 0; border: none; border-radius: 0; height: 100%; }
-.project-modal-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.project-modal-media img { width: 100%; height: 100%; object-fit: contain; background: var(--bg-soft); display: block; }
 .project-modal-body { padding: 28px; }
 .pm-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
 #pm-num::before { content: none; } /* JS sets the number directly; the .proj-rows counter isn't in scope here */
 .project-modal-body p { color: var(--ink-70); font-size: 15px; margin-top: 14px; line-height: 1.6; }
 .pm-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
 .project-modal-links { display: flex; align-items: center; gap: 14px; margin-top: 22px; flex-wrap: wrap; }
-.btn-disabled {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  border-radius: var(--radius-sm);
-  font-size: 14.5px;
-  font-weight: 600;
-  color: var(--ink-50);
-  background: var(--bg-soft);
-  border: 1px solid var(--line);
-  cursor: default;
-}
 
 /* ===================== Skills / stack ===================== */
 .tech-marquees {
