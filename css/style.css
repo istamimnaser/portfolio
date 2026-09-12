@@ -625,6 +625,9 @@ main { counter-reset: stage; }
    portrait shot where the interesting part sits lower in the frame). */
 .photo-card--align-bottom img { object-position: 50% 88%; transform-origin: 50% 88%; }
 .photo-card--align-low img { object-position: 50% 28%; transform-origin: 50% 28%; }
+/* Nudge the crop window sideways to keep a corner logo/watermark in frame. */
+.photo-card--align-left img { object-position: 15% 8%; transform-origin: 15% 8%; }
+.photo-card--align-right img { object-position: 85% 30%; transform-origin: 85% 30%; }
 .photo-card svg { width: 26px; height: 26px; opacity: 0.6; }
 .photo-card span {
   font-family: var(--font-mono);
